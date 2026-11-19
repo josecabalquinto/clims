@@ -1,7 +1,6 @@
 /.phpunit.cache
 /node_modules
 /nativephp/binaries
-/nativephp/electron
 /database/nativephp.sqlite*
 /public/build
 /public/fonts-manifest.dev.json
