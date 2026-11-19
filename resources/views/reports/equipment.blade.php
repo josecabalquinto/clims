@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head><meta charset="utf-8"><title>{{ __('Equipment Report') }}</title><style>body{font-family:Arial,sans-serif;color:#172b2b;margin:32px}header{display:flex;justify-content:space-between;align-items:start;margin-bottom:24px}h1{margin:0;color:#087f80}p{color:#64748b}table{width:100%;border-collapse:collapse;font-size:12px}th,td{border:1px solid #cbd5e1;padding:8px;text-align:left}th{background:#e6f4f3}.number{text-align:right}@media print{button{display:none}body{margin:12mm}}</style></head>
+<body><header><div><h1>{{ __('Equipment Report') }}</h1><p>{{ __('Computer Lab 2') }} · {{ now()->setTimezone(config('clims.display_timezone'))->format('M j, Y g:i A') }}</p></div><button type="button" onclick="window.print()">{{ __('Print Report') }}</button></header>
+<table><thead><tr><th>{{ __('Equipment name') }}</th><th>{{ __('Category') }}</th><th>{{ __('Total quantity') }}</th><th>{{ __('Available quantity') }}</th><th>{{ __('Borrowed quantity') }}</th><th>{{ __('Condition') }}</th></tr></thead><tbody>
+@forelse($equipment as $item)<tr><td>{{ $item->name }}</td><td>{{ $item->category->name }}</td><td class="number">{{ $item->quantity }}</td><td class="number">{{ $item->available_quantity }}</td><td class="number">{{ $item->outstandingQuantity() }}</td><td>{{ ucfirst($item->condition) }}</td></tr>@empty<tr><td colspan="6">{{ __('No equipment matches the selected filters.') }}</td></tr>@endforelse
+</tbody></table></body></html>
